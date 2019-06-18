@@ -3,25 +3,49 @@
 #include <cstdint>
 #include <vector>
 
-#define INFO_WORD_SIZE 4
-#define CODE_WORD_SIZE 7
+static const int
+    INFO_WORD_SIZE = 4,
+    CODE_WORD_SIZE = 7;
 
-#define P0 (0x40U)
-#define P1 (0x20U)
-#define P2 (0x08U)
-#define U0 (0x01U)
-#define U1 (0x02U)
-#define U2 (0x04U)
-#define U3 (0x10U)
+static const int
+    P0 = 0x40,
+    P1 = 0x20,
+    P2 = 0x08,
+    U0 = 0x01,
+    U1 = 0x02,
+    U2 = 0x10;
 
-#define BIT_STATE(num, bit_msk) (((num) & bit_msk) ? 1 : 0)
-#define GET_P0(unint8_num) (BIT_STATE(unint8_num, P0))
-#define GET_P1(unint8_num) (BIT_STATE(unint8_num, P1))
-#define GET_P2(unint8_num) (BIT_STATE(unint8_num, P2))
-#define GET_U0(unint8_num) (BIT_STATE(unint8_num, U0))
-#define GET_U1(unint8_num) (BIT_STATE(unint8_num, U1))
-#define GET_U2(unint8_num) (BIT_STATE(unint8_num, U2))
-#define GET_U3(unint8_num) (BIT_STATE(unint8_num, U3))
+inline int BIT_STATE(int num, int bit_msk) {
+    return (((num) & bit_msk) ? 1 : 0);
+}
+
+inline uint8_t GET_P0 (uint8_t num) {
+    return BIT_STATE(num, P0);
+}
+
+inline uint8_t GET_P1 (uint8_t num) {
+    return BIT_STATE(num, P1);
+}
+
+inline uint8_t GET_P2 (unint8 num) {
+    return BIT_STATE(num, P2);
+}
+
+inline uint8_t GET_U0 (uint8_t num) {
+    return BIT_STATE(num, U0);
+}
+
+inline uint8_t GET_U1(uint8_t num) {
+    return BIT_STATE(num, U1);
+}
+
+inline uint8_t GET_U2(uint8_t num) {
+    return BIT_STATE(num, U2);
+}
+
+inline uint8_t GET_U3(uint8_t num) {
+    return BIT_STATE(num, U3);
+}
 
 class Hemming_7_4
 {
@@ -38,11 +62,8 @@ private:
         uint8_t g_m[INFO_WORD_SIZE][CODE_WORD_SIZE]
         );
     void get_word(uint8_t *info_word, uint8_t inf_to_code);
-    // void hemming_7_4 (uint8_t & inf_to_code);
-    // uint8_t calc_syndrome(uint8_t * code_word);
     uint8_t dec_to_bin_convert(uint8_t dec_intepretetion_of_binary_num);
     uint8_t get_mistaken_bit_num (char *syndrome);
-    // void fix_mistake (uint8_t mistaken_place, uint8_t *code_word);
     void hemming_7_4_decoder (uint8_t * code_word);///uint8_t [7] - only one code_word
 
 public:
@@ -53,4 +74,4 @@ public:
     
     void Encode(std::vector<uint8_t> &input);
     void Decode(std::vector<uint8_t> &inputData);
-} ;
+};
