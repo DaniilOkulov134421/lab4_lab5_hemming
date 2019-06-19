@@ -3,17 +3,15 @@
 #include <cstdint>
 #include <vector>
 
-static const int
-    INFO_WORD_SIZE = 4,
-    CODE_WORD_SIZE = 7;
+static const int INFO_WORD_SIZE = 4;
+static const int CODE_WORD_SIZE = 7;
 
-static const int
-    P0 = 0x40,
-    P1 = 0x20,
-    P2 = 0x08,
-    U0 = 0x01,
-    U1 = 0x02,
-    U2 = 0x10;
+static const int P0 = 0x40;
+static const int P1 = 0x20;
+static const int P2 = 0x08;
+static const int U0 = 0x01;
+static const int U1 = 0x02;
+static const int U2 = 0x10;
 
 inline int BIT_STATE(int num, int bit_msk) {
     return (((num) & bit_msk) ? 1 : 0);
@@ -47,6 +45,10 @@ inline uint8_t GET_U3(uint8_t num) {
     return BIT_STATE(num, U3);
 }
 
+/*
+input data format is vector of unsigned integer numbers
+in which an information words is right-justified four-bit field
+*/
 class Hemming_7_4
 {
 private:
@@ -60,10 +62,8 @@ private:
 	uint8_t * matrix_mult (
         uint8_t info_word[INFO_WORD_SIZE],
         uint8_t g_m[INFO_WORD_SIZE][CODE_WORD_SIZE]
-        );
+    );
     void get_word(uint8_t *info_word, uint8_t inf_to_code);
-    uint8_t dec_to_bin_convert(uint8_t dec_intepretetion_of_binary_num);
-    uint8_t get_mistaken_bit_num (char *syndrome);
     void hemming_7_4_decoder (uint8_t * code_word);///uint8_t [7] - only one code_word
 
 public:
