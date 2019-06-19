@@ -11,8 +11,8 @@ static const int P1 = 0x20;
 static const int P2 = 0x08;
 static const int U0 = 0x01;
 static const int U1 = 0x02;
-static const int U2 = 0x10;
-static const int U3 = 0x04;
+static const int U2 = 0x04;
+static const int U3 = 0x10;
 
 inline int BIT_STATE(int num, int bit_msk) {
     return (((num) & bit_msk) ? 1 : 0);
