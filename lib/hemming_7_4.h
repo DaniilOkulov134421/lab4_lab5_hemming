@@ -12,6 +12,7 @@ static const int P2 = 0x08;
 static const int U0 = 0x01;
 static const int U1 = 0x02;
 static const int U2 = 0x10;
+static const int U3 = 0x04;
 
 inline int BIT_STATE(int num, int bit_msk) {
     return (((num) & bit_msk) ? 1 : 0);
@@ -25,7 +26,7 @@ inline uint8_t GET_P1 (uint8_t num) {
     return BIT_STATE(num, P1);
 }
 
-inline uint8_t GET_P2 (unint8 num) {
+inline uint8_t GET_P2 (uint8_t num) {
     return BIT_STATE(num, P2);
 }
 
